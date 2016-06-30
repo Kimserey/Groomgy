@@ -1,0 +1,47 @@
+﻿<div ng-controller="NameListController as nameListCtrl">
+    <div class="panel panel-primary" ng-hide="nameListCtrl.users.length > 0">
+        <div class="panel-heading">
+            <h1 class="panel-title">What's Groomgy</h1>
+        </div>
+        <div class="panel-body">
+            <p>
+                <strong>Hello visitor!</strong>
+                <br />
+                <strong>Thanks for visiting Groomgy.com!</strong>
+                <br />
+                <br />
+                Groomgy is about people, we aim to bring people from all over the world together to <a ui-sref="account">discover, share and connect</a>.
+                <br />
+                Discover relationships – friendship, love, and companionship through <a ui-sref="account">messaging</a> and through pictures that you share on Groomgy.
+                <br />
+                Vote and be voted to have your profile featured on the <a ui-sref="tops">Tops page</a>.
+                <br />
+                Join us now and meet awesome people like yourself!
+                <br />
+                <span class="signature">~ the Groomgy team</span>
+            </p>
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h1 class="panel-title">Who's online</h1>
+        </div>
+        <div class="panel-body">
+            <div>
+                <div ng-repeat="user in nameListCtrl.users">
+                    <div class="name">
+                        <a ui-sref="profile({ id: user.UserId })"
+                           ng-class="{'name-female': user.Gender == 1}">{{user.Name}}</a>
+                    </div>
+                    <span class="online-indicator" ng-show="user.IsOnline">online</span>
+                    <span class="offline-indicator" ng-hide="user.IsOnline">offline</span>
+                </div>
+
+                <div ng-hide="nameListCtrl.users.length > 0">
+                    <span class="discover-people-text">See who's online now!</span>
+                    <a class="btn btn-info discover-people-btn" ui-sref="account">LOG IN TO GROOMGY</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

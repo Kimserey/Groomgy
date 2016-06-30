@@ -1,0 +1,228 @@
+﻿<div ng-controller="UserProfileController as profileCtrl">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h1 class="panel-title">
+                {{profileCtrl.profile.Name}}
+                <span class="online-indicator" ng-show="profileCtrl.profile.IsOnline">online</span>
+                <span class="offline-indicator" ng-hide="profileCtrl.profile.IsOnline">offline</span>
+            </h1>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <a ng-href="{{profileCtrl.profile.ProfilePhoto.Large}}" data-lightbox="profile">
+                        <img ng-src="{{profileCtrl.profile.ProfilePhoto.Medium}}"
+                             class="img-profile img-radius-border img-responsive"
+                             alt="{{profileCtrl.profile.Name}}" />
+                    </a>
+                    <div class="profile-button-group">
+                        <button class="btn btn-primary button-send-message"
+                                ng-hide="profileCtrl.profile.CanEdit"
+                                ng-click="profileCtrl.startConversation()"
+                                ng-disabled="profileCtrl.isSendMessageBusy">
+                            {{profileCtrl.isSendMessageBusy ? 'PLEASE WAIT...' : 'SEND MESSAGE'}}
+                        </button>
+                        <button class="btn btn-primary button-send-message"
+                                ng-file-select
+                                ng-file-change="profileCtrl.uploadPhoto($files, 'UploadProfilePhoto')"
+                                accept="image/*"
+                                ng-show="profileCtrl.profile.CanEdit"
+                                ng-disabled="profileCtrl.isPhotoUploadBusy">
+                            <i class="fa fa-caret-right" ng-show="profileCtrl.showHighlight"></i>
+                            <i class="fa fa-caret-right" ng-show="profileCtrl.showHighlight"></i>
+                            <i class="fa fa-caret-right" ng-show="profileCtrl.showHighlight"></i>
+                            {{profileCtrl.isPhotoUploadBusy ? 'PLEASE WAIT...' : 'UPLOAD PROFILE PHOTO'}}
+                            <i class="fa fa-caret-left" ng-show="profileCtrl.showHighlight"></i>
+                            <i class="fa fa-caret-left" ng-show="profileCtrl.showHighlight"></i>
+                            <i class="fa fa-caret-left" ng-show="profileCtrl.showHighlight"></i>
+                        </button>
+                        <button class="btn btn-primary button-send-message"
+                                ng-file-select
+                                ng-file-change="profileCtrl.uploadPhoto($files, 'UploadPhotoForAlbum')"
+                                accept=" image/*"
+                                ng-show="profileCtrl.profile.CanEdit"
+                                ng-disabled="profileCtrl.isPhotoUploadBusy">
+                            {{profileCtrl.isPhotoUploadBusy ? 'PLEASE WAIT...' : 'UPLOAD GALLERY PHOTO'}}
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="well description profile-welcome-content" ng-show="profileCtrl.showHighlight">
+                        <h5 class="profile-welcome-title">Thanks for completing your profile!</h5>
+                        <spam class="profile0welcome-content">
+                            1. Fill your name<br />
+                            2. Specify your gender<br />
+                            3. Upload a profile photo<br />
+                            <a href="" ui-sref="home">4. Meet awesome people!</a>
+                        </spam>
+                    </div>
+                    <div class="well description">
+                        <p>
+                            <strong>Name</strong><br />
+                            {{profileCtrl.profile.Name}}
+                            <a href="" ng-click="showEditName = !showEditName" ng-show="profileCtrl.profile.CanEdit">(edit)</a>
+                            <i class="fa fa-caret-left" ng-show="profileCtrl.showHighlight"></i>
+                            <i class="fa fa-caret-left" ng-show="profileCtrl.showHighlight"></i>
+                            <i class="fa fa-caret-left" ng-show="profileCtrl.showHighlight"></i>
+                        </p>
+                        <div class="row edit-section" ng-show="showEditName">
+                            <div class="input-group">
+                                <input type="text" ng-model="profileCtrl.profile.Name" class="form-control edit-input" placeholder="Type your name...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default"
+                                            type="button"
+                                            ng-click="profileCtrl.saveProfile();showEditName = false">
+                                        SAVE
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <p>
+                            <strong>Age</strong><br />
+                            {{profileCtrl.profile.Age}} <a href="" ng-click="showEditBirthday = !showEditBirthday" ng-show="profileCtrl.profile.CanEdit">(edit)</a>
+                        </p>
+                        <div class="row edit-section" ng-show="showEditBirthday">
+                            <div class="input-group">
+                                <input type="text"
+                                       class="form-control edit-input"
+                                       datepicker-popup
+                                       ng-model="profileCtrl.profile.Birthday"
+                                       is-open="isCalendarOpened"
+                                       min-date="minDate"
+                                       placeholder="When were you born?" />
+                                <span class="input-group-btn">
+                                    <button type="button"
+                                            class="btn btn-default"
+                                            ng-click="$event.preventDefault();$event.stopPropagation();isCalendarOpened = true;">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </button>
+                                </span>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default"
+                                            type="button"
+                                            ng-click="profileCtrl.saveProfile();showEditBirthday = false">
+                                        SAVE
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <p>
+                            <strong>Gender</strong><br />
+                            <i class="fa fa-female" ng-show="profileCtrl.profile.Gender == 1"></i>
+                            <i class="fa fa-male" ng-show="profileCtrl.profile.Gender == 2"></i>
+                            <a href=""
+                               ng-click="showEditGender = !showEditGender"
+                               ng-show="profileCtrl.profile.CanEdit">(edit)</a>
+                            <i class="fa fa-caret-left" ng-show="profileCtrl.showHighlight"></i>
+                            <i class="fa fa-caret-left" ng-show="profileCtrl.showHighlight"></i>
+                            <i class="fa fa-caret-left" ng-show="profileCtrl.showHighlight"></i>
+                        </p>
+                        <div class="row edit-section" ng-show="showEditGender">
+                            <div class="input-group">
+                                <div class="btn-group">
+                                    <label class="btn btn-primary" ng-model="profileCtrl.profile.Gender" btn-radio="1">
+                                        <i class="fa fa-female"></i>
+                                    </label>
+                                    <label class="btn btn-primary" ng-model="profileCtrl.profile.Gender" btn-radio="2">
+                                        <i class="fa fa-male"></i>
+                                    </label>
+                                </div>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default"
+                                            type="button"
+                                            ng-click="profileCtrl.saveProfile();showEditGender = false">
+                                        SAVE
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <p>
+                            <strong>Interested in</strong><br />
+                            <i class="fa fa-female" ng-show="profileCtrl.profile.Interest == 1"></i>
+                            <i class="fa fa-male" ng-show="profileCtrl.profile.Interest == 2"></i>
+                            <a href=""
+                               ng-click="showEditInterest = !showEditInterest"
+                               ng-show="profileCtrl.profile.CanEdit">(edit)</a>
+                        </p>
+                        <div class="row edit-section" ng-show="showEditInterest">
+                            <div class="input-group">
+                                <div class="btn-group">
+                                    <label class="btn btn-primary" ng-model="profileCtrl.profile.Interest" btn-radio="1">
+                                        <i class="fa fa-female"></i>
+                                    </label>
+                                    <label class="btn btn-primary" ng-model="profileCtrl.profile.Interest" btn-radio="2">
+                                        <i class="fa fa-male"></i>
+                                    </label>
+                                </div>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default"
+                                            type="button"
+                                            ng-click="profileCtrl.saveProfile();showEditInterest = false">
+                                        SAVE
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <p>
+                            <strong>Location</strong><br />
+                            {{profileCtrl.profile.Location}} <a href="" ng-click="showEditLocation = !showEditLocation" ng-show="profileCtrl.profile.CanEdit">(edit)</a>
+                        </p>
+                        <div class="row edit-section" ng-show="showEditLocation">
+                            <div class="input-group">
+                                <input type="text" class="form-control edit-input" placeholder="Where do you stay?" ng-model="profileCtrl.profile.Location">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default"
+                                            type="button"
+                                            ng-click="profileCtrl.saveProfile();showEditLocation = false">
+                                        SAVE
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <p class="profile-description">
+                            <strong>Description</strong><br />
+                            {{profileCtrl.profile.Description}} <a href="" ng-click="showEditDescription = !showEditDescription" ng-show="profileCtrl.profile.CanEdit">(edit)</a>
+                        </p>
+                        <div class="row edit-section" ng-show="showEditDescription">
+                            <div class="input-group">
+                                <textarea rows="3" class="form-control edit-input" placeholder="Tell us more about you..." ng-model="profileCtrl.profile.Description"></textarea>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default"
+                                            type="button"
+                                            ng-click="profileCtrl.saveProfile();showEditDescription = false">
+                                        SAVE
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h1 class="panel-title">Gallery</h1>
+        </div>
+        <div class="panel-body">
+            <div class="row img-row" ng-repeat="row in profileCtrl.albumPhotoRows">
+                <div class="col-md-3" ng-repeat="photo in row">
+                    <a ng-href="{{photo.Large}}" data-lightbox="test">
+                        <img ng-src="{{photo.Small}}" class="img-preview img-responsive img-radius-border" />
+                    </a>
+                </div>
+            </div>
+            <div ng-show="!profileCtrl.albumPhotoRows || profileCtrl.albumPhotoRows.length == 0">
+                {{profileCtrl.profile.Name}} has not uploaded any photo yet.
+            </div>
+        </div>
+        <div class="panel-footer profile-gallery-footer"
+             ng-show="profileCtrl.profile.AlbumPhotos.length > 0 && profileCtrl.profile.CanEdit">
+            <a class=" profile-gallery-delete-link"
+               href=""
+               ng-click="profileCtrl.showDeleteGalleryPhoto()">
+                Delete picture(s)
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+﻿@import url(http://fonts.googleapis.com/css?family=Lato:100,200,400);
+
+body {
+    background-image: url(/Images/25H.jpg);
+    width: auto;
+    height: auto;
+    background-size: cover;
+}
+
+.login-box {
+    margin-left: 50%;
+    margin-top: 10%;
+    margin-right: 5%;
+}
+
+.login-text {
+    display:inline-block;
+    float:left;
+    width:40%;
+    height:300px;
+    background-color:rgba(21,26,36,0.90);
+}
+
+.login-content {
+    margin-left: 20px;
+    margin-top: 50px;
+    margin-right: 20px;
+}
+
+.login-button-box {
+    display:inline-block;
+    float:right;
+    width:60%;
+    height:300px;
+    background-color:rgba(255,255,255,0.60)
+}
+
+.login-title {
+    margin-left: 20px;
+    margin-top: 12px;
+    margin-right: 20px;
+    font-size: 23px;
+    font-weight: 400;
+    font-family: Lato, sans-serif;
+
+}
+
+.login-box-title {
+    display:inline-block;
+    color: black;
+}
+
+.logo-text-title {
+    display:inline-block;
+    color: white;
+}
+
+.logo-text-paragraph {
+    display:inline-block;
+    font-family: Lato, sans-serif;
+    color: white;
+    font-size: 16px;
+    font-weight: 300;
+}

@@ -1,0 +1,30 @@
+﻿<div class="col-sm-offset-1 col-sm-10" ng-controller="UserSettingsController as settingsCtrl">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h1 class="panel-title">Settings</h1>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-8">
+                    Enable email notifications
+                </div>
+                <div class="col-sm-4">
+                    <div class="btn-group">
+                        <label class="btn btn-primary"
+                               ng-model="settingsCtrl.emailNotificationEnabled"
+                               btn-radio="true"
+                               ng-click="settingsCtrl.updateEmailNotifications(true)">
+                            <i class="fa fa-check"></i>
+                        </label>
+                        <label class="btn btn-primary"
+                               ng-model="settingsCtrl.emailNotificationEnabled"
+                               btn-radio="false"
+                               ng-click="settingsCtrl.updateEmailNotifications(false)">
+                            <i class="fa fa-times"></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

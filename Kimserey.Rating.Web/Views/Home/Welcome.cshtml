@@ -1,0 +1,242 @@
+﻿<div class="welcome-modal">
+    <img src="~/Images/Groomgy_Name.svg" class="welcome-groomgy" />
+    <img src="~/Images/welcome1.png" class="welcome-image" />
+    <div class="welcome-container">
+        <div class="row welcome-title-form">
+            <div class="col-md-2 line"></div>
+            <div class="col-md-8  welcome-line-title">
+                Before you start, we need to know
+            </div>
+            <div class="col-md-2 line"></div>
+        </div>
+        <form name="welcomeForm">
+            <div class="row welcome-form">
+                <div class="col-sm-4" ng-hide="welcomeCtrl.profilevalidation.IsNameValid">
+                    <div class="welcome-question">
+                        <div>
+                            Your name
+                        </div>
+                        <input class="form-control welcome-form-name-input"
+                               placeholder="Enter your name"
+                               type="text"
+                               ng-model="welcomeCtrl.name"
+                               ng-required="!welcomeCtrl.profilevalidation.IsNameValid" />
+                    </div>
+                </div>
+                <div class="col-sm-4" ng-hide="welcomeCtrl.profilevalidation.IsBirthdayValid">
+                    <div class="welcome-question">
+                        <div>
+                            Your birth date
+                        </div>
+                        <div class="input-group">
+                            <input type="text"
+                                   class="form-control edit-input"
+                                   datepicker-popup
+                                   ng-model="welcomeCtrl.birthday"
+                                   is-open="isCalendarOpened"
+                                   min-date="minDate"
+                                   placeholder="Date"
+                                   ng-required="!welcomeCtrl.profilevalidation.IsBirthdayValid" />
+                            <span class="input-group-btn">
+                                <button type="button"
+                                        class="btn btn-default"
+                                        ng-click="$event.preventDefault();$event.stopPropagation();isCalendarOpened = true;">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <div ng-show="!welcomeCtrl.isBirthdayInputValid" class="welcome-age-warning">You must be over 18 to use Groomgy.</div>
+                    </div>
+                </div>
+                <div class="col-sm-4" ng-hide="welcomeCtrl.profilevalidation.IsGenderValid">
+                    <div class="welcome-question">
+                        <div>
+                            Your gender
+                        </div>
+                        <div class="btn-group">
+                            <label class="btn btn-primary" ng-model="welcomeCtrl.gender" btn-radio="1">
+                                <i class="fa fa-female"></i>
+                            </label>
+                            <label class="btn btn-primary" ng-model="welcomeCtrl.gender" btn-radio="2">
+                                <i class="fa fa-male"></i>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4" ng-hide="welcomeCtrl.profilevalidation.IsInterestValid">
+                    <div class="welcome-question">
+                        <div>
+                            Your interest
+                        </div>
+                        <div class="btn-group">
+                            <label class="btn btn-info" ng-model="welcomeCtrl.interest" btn-radio="1">
+                                <i class="fa fa-female"></i>
+                            </label>
+                            <label class="btn btn-info" ng-model="welcomeCtrl.interest" btn-radio="2">
+                                <i class="fa fa-male"></i>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="welcomeCtrl.acceptTmc"> I have read and agree to the <a href="" ng-click="showTmc = !showTmc">terms and conditions</a>.
+                </label>
+            </div>
+            <div ng-show="showTmc" class="welcome-tmc">
+                Terms and conditions
+                1. Terms of website use
+                This page provides the terms of use ("Terms of Use") upon which you make use of our website www.groomgy.com ("Website"). Please read these Terms of Use carefully before you start to use the site. By using our site, you accept these Terms of Use and you agree to abide by them. If you do not agree to these Terms of Use, please refrain from using our site.
+                2. Definitions
+                "Agreement" means these Terms of Use which regulate the relationship between Groomgy.com and the Member;
+                "Communications" means any communication including but not limited to communications by email by the Member to other members of Groomgy.com;
+                "Contribution" means the contributions of the User to the Website including but not limited to the text and/or images contained within the Users Profile;
+                "User" means any natural person whose account has been verified by Groomgy.com and remains valid;
+                "Users Profile" means the part of the Website containing information and/or pictures about the user;
+                "Service" means the service provided by Groomgy.com to the User through the Website including, but not limited to, allowing the Users to access and/or use the Website, and to contact and/or be contacted by other Users and/or publish or transmit information on the Website;
+                3. Information about us
+                Groomgy.com is a site operated by Groomgy ("We"). We are registered in Singapore under company number 53289097C.
+                4. Accessing our website
+                4.1 We reserve the right to withdraw or amend the service we provide on our Website without notice (see below). We will not be liable if for any reason our Website is unavailable at any time or for any period.
+                4.2 We may restrict access to some parts of our website, or our entire Website, from time to time to users who have registered with us.
+                4.3 If you are provided with a user identification code, password or any other piece of information as part of our security procedures, you must treat such information as confidential, and you must not disclose it to any third party. We have the right to disable any user identification code or password, whether chosen by you or allocated by us, at any time, if in our opinion you have failed to comply with any of the provisions of these Terms of Use.
+                4.4 You are responsible for making all arrangements necessary for you to have access to our Website. You are also responsible for ensuring that all persons who access our Website through your internet connection are aware of these Terms of Use, and that they comply with them.
+                5. User
+                5.1 By becoming a Grommgy.com User the User warrants and represents that:
+                5.1.1 the User is at least 16 years of age;
+                5.1.2 the User has not been convicted of any offence or been subject to any injunction or any order to pay damages under the Protection from Harassment Act 1997 (or under any statutory enactment replacing and/or amending such Act); and
+                5.1.3 the User will be using the Service for his/her personal use only.
+                5.2 We shall have the right in our absolute discretion to refuse to register applications for membership and to terminate memberships at any time.
+                5.3 An application for membership shall be treated as accepted by us when the User receives confirmation of his/her membership from Groomgy.com by e-mail.
+                6. User profile
+                6.1 The User must be aware that all information published on the User profile will be openly accessible.
+                6.3 We or Groomgy.com may copy and/or reproduce any information published by Users on the Groomgy Website in any form and in any manner.
+                6.4 The User shall ensure that all information transmitted and/or published on the Website by him/her from time to time is accurate, true, complete and is not misleading and will be regularly reviewed to ensure that it remains so.
+                6.5 We reserve the right at our absolute discretion from time to time and without notice to amend and/or delete all or any part of a User's Profile.
+                7. Acceptable use
+                7.1 You may use our Website only for lawful purposes. You may not use our Website:
+                7.1.1 in any way that breaches any applicable local, national or international law or regulation;
+                7.1.2 in any way that is unlawful or fraudulent, or has any unlawful or fraudulent purpose or effect;
+                7.1.3 in any way that may facilitate prostitution or paedophilia; or
+                7.1.4 to knowingly transmit any data, send or upload any material that contains viruses, Trojan horses, worms, time-bombs, keystroke loggers, spyware, adware or any other harmful programs or similar computer code designed to adversely affect the operation of any computer software or hardware.
+                7.2 You also agree:
+                7.2.1 not to reproduce, duplicate, copy or re-sell any part of our site in contravention of the provisions of these Terms of Use;
+                7.2.2 not to access without authority, interfere with, damage or disrupt:
+                7.2.2.1 any part of the Website; or
+                7.2.2.2 any software used in the provision of the Services from the Website.
+                7.3 All Contributions and Communications with other members of Groomgy.com shall conform to the content standards set out in this clause 7.3 Contributions and Communications without limitation must not: 7.3.1. contain any material which is defamatory of any person;
+                7.3.2 contain any material which is obscene, offensive, hateful or inflammatory;
+                7.3.3 promote sexually explicit material;
+                7.3.4 promote violence;
+                7.3.5 promote discrimination based on race, sex, religion, nationality, disability, sexual orientation or age;
+                7.3.6 infringe any copyright, database right or trade mark of any other person;
+                7.3.7 be likely to deceive any person; 8.3.8 be threatening, abusive or invade another's privacy, or cause annoyance, inconvenience or needless anxiety;
+                7.3.9 be likely to harass, upset, embarrass, alarm or annoy any other person;
+                7.3.10 be used to impersonate any person, or to misrepresent your identity or affiliation with any person; or
+                7.3.11 give the impression that they emanate from us, if this is not the case.
+                8. Reliance on information posted
+                Commentary and other materials posted on our Website are not intended to amount to advice on which reliance should be placed. We therefore disclaim all liability and responsibility arising from any reliance placed on such materials by any visitor to our Website, User or by anyone who may be informed of any of its contents.
+                9. Our site changes regularly
+                We aim to update our Website regularly, and may change the content at any time. If the need arises, we may suspend access to our Website, or close it indefinitely. Any of the material on our Website may be out of date at any given time, and we are under no obligation to update such material.
+                10. Information about you and visits to our site
+                We process information about you in accordance with ourprivacy policy. By using our Website, you consent to such processing and you warrant that all data provided by you is accurate.
+                11. Uploading material to our site
+                11.1 Whenever you make use of a feature that allows you to upload material to our Website, or to make contact with other users of our Website, you must comply with the content standards set out clause 7. You warrant that any such Contribution does comply with those standards, and you indemnify us for any breach of such warranty.
+                11.2 Any Contributions, Communications or material you upload to our site will be considered non-confidential and non-proprietary, and we have the right to use, copy, distribute and disclose to third parties any such material for any purpose. We also have the right to disclose your identity to any third party who is claiming that any material posted or uploaded by you to our Website constitutes a violation of their intellectual property rights, or of their right to privacy.
+                11.3 We will not be responsible, or liable to any third party, for the content or accuracy of any materials posted by you or any other user of our Website.
+                11.4 We have the right to remove any material or posting you make on our Website if, in our opinion, such material does not comply with the content standards set out in clause 7.
+                12. Linking to our site
+                12.1 You may link to our home page, provided you do so in a way that is fair and legal and does not damage our reputation or take advantage of it, but you must not establish a link in such a way as to suggest any form of association, approval or endorsement on our part where none exists.
+                12.2 You must not establish a link from any website that is not owned by you.
+                12.3 Our Website must not be framed on any other site, nor may you create a link to any part of our Website other than the home page. We reserve the right to withdraw linking permission without notice. The website from which you are linking must comply in all respects with the content standards set out in clause 7 of these Terms of Use.
+                13. Links from our site
+                Where our Website contains links to other sites and resources provided by third parties, these links are provided for your information only. We have no control over the contents of those sites or resources, and accept no responsibility for them or for any loss or damage that may arise from your use of them.
+                14. Intellectual property rights
+                14.1 We are the owner of all intellectual property rights in our Website, and in the material published on it. Those works are protected by copyright laws and treaties around the world. All such rights are reserved.
+                14.2 You may print off one copy, and may download extracts, of any page(s) from our Website for your personal reference and you may draw the attention of others within your organisation to material posted on our Website.
+                14.3 You must not modify the paper or digital copies of any materials you have printed off or downloaded in any way, and you must not use any illustrations, photographs, video or audio sequences or any graphics separately from any accompanying text.
+                14.4 You must not use any part of the materials on our Website for commercial purposes without obtaining a licence to do so from us or our licensors.
+                14.5 You warrant that you are the author of all information and/or pictures uploaded or otherwise entered onto the Website and assign to Groomgy.com all copyright in such information and pictures.
+                15. Termination
+                15.1 Users may terminate their membership at any time for any reason by contacting support@groomgy.com.
+                15.2 Groomgy.com may terminate or suspend a User's membership and access to the Service with immediate effect and either with or without notice:-
+                15.2.1 if the Member is in breach of any of the terms of this agreement; and/or
+                15.2.2 if Groomgy.com is unable to determine the accuracy and/or validity of any information provided by the User; and/or
+                15.2.3 for any other commercial or technical reason.
+                15.3 Any notice shall be sent to the User's email address as provided in his/her application for membership.
+                15.4 Certain clauses of these Terms of Use will remain in force after termination of the membership including clauses 8.2 and 15 and 17.
+                15.5 Failure to comply with clause 8 constitutes a material breach of the Terms of Use upon which you are permitted to use our Website, and may result in our taking all or any of the following actions:
+                15.5.1 immediate, temporary or permanent withdrawal of your right to use our site.
+                15.5.2 immediate, temporary or permanent removal of any posting or material uploaded by you to our site.
+                16. Indemnity
+                16.1 You undertake fully and effectively to indemnify and keep indemnified at all times Groomgy.com and its officers employees agents or authorised representatives against all actions proceedings claims costs demands liabilities and expenses whatsoever (including legal and other fees and disbursements) sustained incurred or paid by us or Groomgy.com directly or indirectly in respect of:
+                16.2 access to and/or use of the Service by the User;
+                16.3 any information data or material published or transmitted by the User; and
+                16.4 any breach by the User of any of the provisions of these Terms of Use
+                or of any code law or regulation relating thereto.
+                17. Our liability
+                17.1 The material displayed on our Website is provided without any guarantees, conditions or warranties as to its accuracy. To the extent permitted by law, we hereby expressly exclude:
+                17.1.1 all conditions, warranties and other terms which might otherwise be implied by statute, common law or the law of equity; and
+                17.1.2 any liability for any direct, indirect or consequential loss or damage incurred by any User in connection with the Services or access to the Website and any materials posted on it.
+                17.2 Groomgy.com expressly excludes liability for consequential loss, damage or corruption to other software or data or for loss of profit business revenue or goodwill incurred by you or a User.
+                17.3 No part of this clause 17 shall affect our liability for death or personal injury arising from our negligence, nor our liability for fraudulent misrepresentation or misrepresentation as to a fundamental matter, nor any other liability which cannot be excluded or limited under applicable law.
+                18. Verification Service
+                18.1 The Groomgy Verification Service is an identity authentication service, conducted via cross-checking of various social IDs. Accordingly, it may not be used in whole or in part as a factor in determining eligibility for a background check.
+                18.2 We assume no liability to you related to this service, even if we are negligent. In particular, we are not liable for any consequential damages or incidental damages, even if advised of their possibility, or punitive damages.
+                18.3 You agree to pay for our defence of any third party's claim related to your breach of any of these terms or related to your negligence or wrongful act or omission related to the Verification service. You agree to pay any settlement or judgment entered for any such claim.
+                19. Variations
+                We may revise these Terms of Use at any time. You are expected to check the Terms of Use from time to time to take notice of any changes we have made, as they are binding on you. Any variations to these Terms of Use must be in writing and signed on behalf of the parties.
+                Privacy policy
+                Groomgy.com ("We") are committed to protecting and respecting your privacy.
+                This policy (together with our Terms of Use and any other documents referred to on it) sets out the basis on which any personal data we collect from you, or that you provide to us, will be processed by us. Please read the following carefully to understand our views and practices regarding your personal data and how we will treat it.
+                Information we may collect from you
+                We may collect and process the following data about you:
+                Information that you provide by filling in forms on our site www.groomgy.com (our site). This includes information provided at the time of registering to use our site, subscribing to our service, posting material or requesting further services. We may also ask you for information when you report a problem with our site.If you contact us, we may keep a record of that correspondence.We may also ask you to complete surveys that we use for research purposes, although you do not have to respond to them. Details of your visits to our site including, but not limited to, traffic data, location data, weblogs and other communication data, whether this is required for our own billing purposes or otherwise and the resources that you access.
+                IP addresses and cookies
+                We may collect information about your computer, including where available your IP address, operating system and browser type, for system administration and to report aggregate information to our advertisers. This is statistical data about our users' browsing actions and patterns, and does not identify any individual.
+                For the same reason, we may obtain information about your general internet usage by using a cookie file which is stored on the hard drive of your computer. Cookies contain information that is transferred to your computer's hard drive. They help us to improve our site and to deliver a better and more personalised service.
+                They enable us:
+                To estimate our audience size and usage pattern to store information about your preferences, and so allow us to customise our site according to your individual interestsTo speed up your searchesTo recognise you when you return to our site.
+                You may refuse to accept cookies by activating the setting on your browser which allows you to refuse the setting of cookies. However, if you select this setting you may be unable to access certain parts of our site. Unless you have adjusted your browser setting so that it will refuse cookies, our system will issue cookies when you log on to our site.
+                Please note that our advertisers may also use cookies, over which we have no control.
+                Where we store your personal data
+                The data that we collect from you may be transferred to, and stored at, a destination outside Singapore. By submitting your personal data, you agree to this transfer, storing or processing. We will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this privacy policy.
+                All information you provide to us is stored on our secure servers. Any communication with Groomgy.com will be encrypted [using SSL technology.] Where we have given you (or where you have chosen) a password which enables you to access certain parts of our site, you are responsible for keeping this password confidential. We ask you not to share a password with anyone.
+                Unfortunately, the transmission of information via the internet is not completely secure. Although we will do our best to protect your personal data, we cannot guarantee the security of your data transmitted to our site; any transmission is at your own risk. Once we have received your information, we will use strict procedures and security features to try to prevent unauthorised access.
+                Uses made of the information
+                We use information held about you in the following ways:
+                To ensure that content from our site is presented in the most effective manner for you and for your computer to provide you with information, products or services that you request from us or which we feel may interest you, where you have consented to be contacted for such purposes to carry out our obligations arising from any contracts entered into between you and us to allow you to participate in interactive features of our service, when you choose to do so to notify you about changes to our service.
+                If you are an existing customer, we will only contact you by electronic means (e-mail or SMS) with information about services similar to those which have been provided on previous occasions.
+                We may make use of the personal data we have collected from you to enable us to comply with our advertisers' wishes by displaying their advertisement to that target audience.
+                Disclosure of your information
+                We may disclose your personal information to third parties:
+                In the event that we sell or buy any business or assets, in which case we may disclose your personal data to the prospective seller or buyer of such business or assets.If Groomgy.com or substantially all of its assets are acquired by a third party, in which case personal data held by it about its customers will be one of the transferred assets.If we are under a duty to disclose or share your personal data in order to comply with any legal obligation, or in order to enforce or apply our terms of use and other agreements; or to protect the rights, property, or safety of Groomgy.com, our customers, or others. [This includes exchanging information with other companies and organisations for the purposes of fraud protection and credit risk reduction.]
+                Your rights
+                You have the right to ask us not to process your personal data for marketing purposes. We will usually inform you (before collecting your data) if we intend to use your data for such purposes or if we intend to disclose your information to any third party for such purposes. You can exercise your right to prevent such processing by checking certain boxes on the forms we use to collect your data. You can also exercise the right at any time by contacting us.
+                Our site may, from time to time, contain links to and from the websites of our partner networks, advertisers and affiliates. If you follow a link to any of these websites, please note that these websites have their own privacy policies and that we do not accept any responsibility or liability for these policies. Please check these policies before you submit any personal data to these websites.
+                Changes to our privacy policy
+                Any changes we may make to our privacy policy in the future will be posted on this page and, where appropriate, notified to you by e-mail.
+                Contact
+                Questions, comments and requests regarding this privacy policy are welcomed and should sent to contact@groomgy.com
+            </div>
+        </form>
+    </div>
+    <button class="btn btn-info welcome-btn"
+            ng-click="welcomeCtrl.go()"
+            ng-disabled="!welcomeCtrl.acceptTmc
+            || !welcomeCtrl.isReady
+            || welcomeForm.$invalid
+            || !welcomeCtrl.isBirthdayInputValid
+            || !welcomeCtrl.profilevalidation.IsGenderValid && !welcomeCtrl.gender
+            || !welcomeCtrl.profilevalidation.IsInterestValid && !welcomeCtrl.interest">
+        {{ welcomeCtrl.redirectingToProfile ? 'Going to your profile...' : 'GO!' }}
+    </button>
+</div>
+
+<style>
+    .welcome-age-warning {
+        color: red;
+        font-size: smaller;
+    }
+</style>

@@ -1,0 +1,38 @@
+﻿<div ng-controller="MatchController as matchCtrl">
+    <div class="row" ng-show="matchCtrl.isAuth">
+        <div class="col-sm-6" ng-repeat="match in matchCtrl.matches">
+            <div class="match-box">
+                <div class="row">
+                    <div class="col-sm-6 match-box-col">
+                        <a ui-sref="profile({ id: match.UserId })">
+                            <img ng-src="{{match.ProfilePhoto.Large}}"
+                                 class="img-responsive match-box-img"
+                                 alt="{{match.Name}}" />
+                        </a>
+                    </div>
+                    <div class="col-sm-6 match-box-col">
+                        <div class="match-box-content-title" ng-class="{ 'match-box-title-woman': match.Gender == '1', 'match-box-title-man': match.Gender =='2' }">
+                            <i class="fa fa-random"></i> Random match
+                        </div>
+                        <div class="match-box-content">
+                            <div class="match-box-content-text">
+                                <div class="match-box-content-subtitle">Name</div>
+                                <div>{{match.Name}} <i class="fa fa-male" ng-show="match.Gender == '2'"></i><i class="fa fa-female" ng-show="match.Gender == '1'"></i></div>
+                                <div class="match-box-content-subtitle">Description</div>
+                                <div>{{ match.Description }}</div>
+                            </div>
+                            <div>
+                                <button class="btn btn-default match-box-btn" ng-click="matchCtrl.startConversation(match.UserId)"><i class="fa fa-paper-plane"></i></button>
+                                <span class="match-box-button-txt">Message</span>
+                            </div>
+                            <div>
+                                <button class="btn btn-default match-box-btn" ng-click="matchCtrl.voteForUser(match.UserId)" ng-disabled="match.Liked || matchCtrl.isBusy"><i class="fa fa-thumbs-up"></i></button>
+                                <span class="match-box-button-txt">{{ match.Liked ? 'Liked!' : 'Like' }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

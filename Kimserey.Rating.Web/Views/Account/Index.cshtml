@@ -1,0 +1,96 @@
+﻿<div class="container account-background account-content" ng-controller="AccountController as accountCtrl">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="discover-text">
+                <h1 class="title">
+                    <img src="~/Images/Groomgy_Name.svg" class="logo-title" />
+                    <span class="title-quote">message anyone, anywhere!</span>
+                </h1>
+                <a class="btn btn-primary btn-lg btn-block discover-button" ui-sref="home">Discover Groomgy</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary account-panel">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Log in if you have an account</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row account-social-content">
+                        <div class="col-sm-6">
+                            @using (Html.BeginForm("ExternalLogin", "Account", new { returnUrl = "/account/external", provider = "Facebook" }))
+                            {
+                                @Html.AntiForgeryToken();
+                                <button type="submit" class="btn btn-block btn-social btn-facebook account-social-button">
+                                    <i class="fa fa-facebook "></i> Log in with Facebook
+                                </button>
+                            }
+                        </div>
+                        <div class="col-sm-6">
+                            @using (Html.BeginForm("ExternalLogin", "Account", new { returnUrl = "/account/external", provider = "Google" }))
+                            {
+                                @Html.AntiForgeryToken();
+                                <button type="submit" class="btn btn-block btn-social btn-google-plus account-social-button">
+                                    <i class="fa fa-google-plus"></i> Log in with Google
+                                </button>
+                            }
+                        </div>
+                    </div>
+                    <form name="loginForm">
+                        <input type="text" class="form-control"
+                               placeholder="Email"
+                               ng-model="accountCtrl.loginCredentials.Email" required>
+                        <input type="password" class="form-control"
+                               placeholder="Password"
+                               ng-model="accountCtrl.loginCredentials.Password" required>
+                        <button class="btn btn-lg btn-primary btn-block form-button"
+                                type="submit"
+                                ng-click="accountCtrl.login()"
+                                ng-disabled="accountCtrl.isLoginBusy">
+                            {{accountCtrl.isLoginBusy ? 'PLEASE WAIT...' : 'LOG IN'}}
+                        </button>
+                        <div class="alert alert-warning" ng-show="accountCtrl.loginErrors && accountCtrl.loginErrors.length > 0">
+                            <ul>
+                                <li ng-repeat="error in accountCtrl.loginErrors">{{error}}</li>
+                            </ul>
+                        </div>
+                        <a href="" ui-sref="account.forgotpassword">Forgot password</a>
+                    </form>
+                </div>
+            </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Or sign up now!</h1>
+                </div>
+                <div class="panel-body">
+                    <form name="registerForm">
+                        <div class="alert alert-success" ng-show="accountCtrl.verificationEmailSent">{{accountCtrl.verificationEmailSent}}</div>
+                        <input type="text" class="form-control"
+                               placeholder="Email"
+                               ng-model="accountCtrl.registration.Email" required>
+                        <input type="password" class="form-control"
+                               placeholder="Password"
+                               ng-model="accountCtrl.registration.Password" required>
+                        <input type="password" class="form-control"
+                               placeholder="Confirm Password"
+                               ng-model="accountCtrl.registration.ConfirmPassword" required>
+                        <button class="btn btn-lg btn-info btn-block form-button"
+                                type="submit"
+                                ng-click="accountCtrl.register()"
+                                ng-disabled="accountCtrl.isRegisterBusy">
+                            {{accountCtrl.isRegisterBusy ? 'PLEASE WAIT...' : 'SIGN UP'}}
+                        </button>
+                        <div class="alert alert-warning" ng-show="accountCtrl.registrationErrors && accountCtrl.registrationErrors.length > 0">
+                            <ul>
+                                <li ng-repeat="error in accountCtrl.registrationErrors">
+                                    {{error}}
+                                    <br/>
+                                    <a class="resendConfirmation" ng-show="accountCtrl.canResendConfirmation" href="" ng-click="accountCtrl.sendConfirmationEmail()">Click here to send another confirmation email.</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

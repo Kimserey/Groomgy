@@ -1,0 +1,14 @@
+﻿<div class="row top-tile"
+     ng-class="{ 'top-tile-background-lady' : userRank.User.Gender <= 1,
+                 'top-tile-background-man' : userRank.User.Gender == 2 }">
+    <div class="col-md-4 col-sm-4 col-xs-4">
+        <span class="classement">{{$index + 1}}</span>
+        <img ng-src="{{userRank.User.ProfilePhoto.Small}}"
+             class="img-responsive img-radius-border"
+             alt="{{userRank.User.Name}}" />
+    </div>
+    <div class="col-md-8 col-sm-8 col-xs-8">
+        <span>{{userRank.User.Name}}</span>
+        <p class="top-tile-text">{{userRank.Value}}</p>
+    </div>
+</div>

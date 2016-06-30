@@ -1,0 +1,54 @@
+﻿<div class="panel panel-primary" ng-show="conversationCtrl.activatedConversation">
+    <div class="panel-heading">
+        <h1 class="panel-title">
+            {{conversationCtrl.activatedConversation.Title}}
+            <span class="online-indicator"
+                  ng-show="conversationCtrl.activatedConversation.IsInterlocutorOnline">
+                online
+            </span>
+            <span class="offline-indicator"
+                  ng-hide="conversationCtrl.activatedConversation.IsInterlocutorOnline">
+                offline
+            </span>
+            <a href="" ng-click="conversationCtrl.deleteActivatedConversation()">
+                <i class="fa fa-trash-o conversation-delete"></i>
+            </a>
+        </h1>
+    </div>
+    <div class="panel-body padding-zero">
+        <div class="conversation row" scroll-glue>
+            <div class="row" ng-repeat="message in conversationCtrl.activatedConversation.Messages">
+                <a href="" ui-sref="profile({id: message.UserId})">
+                    <img ng-src="{{message.ProfilePhotoUrl}}"
+                         alt="profile image"
+                         class="profile-img-circle"
+                         ng-class="{'img-conversation-user': message.IsUserMessage,
+                     'img-conversation-interlocutor': !message.IsUserMessage}" />
+                </a>
+                <p class="message-conversation" ng-class="{'message-conversation-user': message.IsUserMessage, 'message-conversation-interlocutor': !message.IsUserMessage}">
+                    {{message.Text}}
+                    <span class="time-conversation-user">{{message.SentOnDisplay}}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <form>
+            <div class="input-group">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Write something..."
+                       ng-disabled="conversationCtrl.isSendMessageBusy"
+                       ng-model="conversationCtrl.draftMessage"
+                       id="sendInput">
+                <span class="input-group-btn">
+                    <input class="btn btn-default"
+                           type="submit"
+                           ng-disabled="conversationCtrl.isSendMessageBusy || !conversationCtrl.draftMessage"
+                           ng-click="conversationCtrl.send()"
+                           value="SEND" />
+                </span>
+            </div>
+        </form>
+    </div>
+</div>

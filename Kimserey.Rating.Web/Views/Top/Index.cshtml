@@ -1,0 +1,82 @@
+﻿<div class="row" ng-controller="TopsController as topsCtrl">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1 class="panel-title">Most voted profiles</h1>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a class="top-tile-link" href="" ui-sref="profile({id: userRank.User.UserId})" ng-repeat="userRank in topsCtrl.mostVotedMan">
+                            <div ng-include="'/app/Top/TileTemplate'" />
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="top-tile-link" href="" ui-sref="profile({id: userRank.User.UserId})" ng-repeat="userRank in topsCtrl.mostVotedLady">
+                            <div ng-include="'/app/Top/TileTemplate'" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1 class="panel-title">Most viewed profiles</h1>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a class="top-tile-link" href="" ui-sref="profile({id: userRank.User.UserId})" ng-repeat="userRank in topsCtrl.mostViewedMan">
+                            <div ng-include="'/app/Top/TileTemplate'" />
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="top-tile-link" href="" ui-sref="profile({id: userRank.User.UserId})" ng-repeat="userRank in topsCtrl.mostViewedLady">
+                            <div ng-include="'/app/Top/TileTemplate'" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">Vote addicts</h1>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a class="top-tile-link" href="" ui-sref="profile({id: userRank.User.UserId})" ng-repeat="userRank in topsCtrl.voteAddictsMan">
+                            <div ng-include="'/app/Top/TileTemplate'" />
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="top-tile-link" href="" ui-sref="profile({id: userRank.User.UserId})" ng-repeat="userRank in topsCtrl.voteAddictsLady">
+                            <div ng-include="'/app/Top/TileTemplate'" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">Message addicts</h1>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a class="top-tile-link" href="" ui-sref="profile({id: userRank.User.UserId})" ng-repeat="userRank in topsCtrl.messageAddictsMan">
+                            <div ng-include="'/app/Top/TileTemplate'" />
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="top-tile-link" href="" ui-sref="profile({id: userRank.User.UserId})" ng-repeat="userRank in topsCtrl.messageAddictsLady">
+                            <div ng-include="'/app/Top/TileTemplate'" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

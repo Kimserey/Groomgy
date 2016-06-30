@@ -1,0 +1,44 @@
+﻿<div ng-controller="UserTileListController as userTileListCtrl">
+    <div class="row filter">
+        <button class="btn btn-default filter-selection"
+                ng-click="userTileListCtrl.showFilters = !userTileListCtrl.showFilters">
+            I want to see: <span style="text-decoration:underline;">{{userTileListCtrl.filter}}</span> <i class="fa fa-filter"></i>
+        </button>
+        <div class="row" ng-show="userTileListCtrl.showFilters && !userTileListCtrl.isLoggedIn">
+            <span class="discover-people-text">Log in to filter men and/or women on Groomgy!</span>
+            <span><a class="btn btn-info discover-people-btn" ui-sref="account">LOG IN TO GROOMGY</a></span>
+        </div>
+        <div class="row" ng-show="userTileListCtrl.showFilters && userTileListCtrl.isLoggedIn">
+            <div class="col-sm-4">
+                <button class="filter-selection filter-button btn btn-default filter-selection-everyone" ng-click="userTileListCtrl.changeFilter('Everyone');">Everyone <i class="fa fa-male"></i><i class="fa fa-female"></i></button>
+            </div>
+            <div class="col-sm-4">
+                <button class="filter-selection filter-button btn btn-default filter-selection-men" ng-click="userTileListCtrl.changeFilter('Men')">Men <i class="fa fa-male"></i></button>
+            </div>
+            <div class="col-sm-4">
+                <button class="filter-selection filter-button btn btn-default filter-selection-women" ng-click="userTileListCtrl.changeFilter('Women')">Women <i class="fa fa-female"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-repeat="row in userTileListCtrl.tileRows">
+        <div class="col-sm-4" ng-repeat="tile in row">
+            <a ui-sref="profile({ id: tile.UserId })">
+                <img ng-src="{{tile.ProfilePhoto.Medium}}"
+                     class="img-preview img-responsive img-radius-border user-tile"
+                     alt="{{tile.Name}}" />
+            </a>
+        </div>
+    </div>
+    <div ng-hide="userTileListCtrl.loaded" ng-include="'/app/Home/Loader'" />
+    <div class="row load-more" ng-show="userTileListCtrl.tileRows[0].length > 0 && userTileListCtrl.loaded">
+        <div class="col-xs-3 line"></div>
+        <div class="col-xs-6">
+            <button class="btn btn-default btn-sm btn-block"
+                    ng-click="userTileListCtrl.getNextUsers()"
+                    ng-disabled="userTileListCtrl.canLoadMore">
+                Load more people
+            </button>
+        </div>
+        <div class="col-xs-3 line"></div>
+    </div>
+</div>

@@ -1,0 +1,99 @@
+﻿<div>
+    <div class="jumbotron banner-img computer" ng-hide="homeCtrl.isAuth">
+        <div class="row banner-content">
+            <div class="col-md-6">
+                <h1 class="title">
+                    <img src="~/Images/Groomgy_Name.svg" class="logo-title" />
+                    <span class="title-quote">message anyone, anywhere!</span>
+                </h1>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a class="btn btn-primary btn-block account-button" ui-sref="account">Log in</a>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-primary btn-block account-button" ui-sref="account">Sign up</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5><i class="fa fa-slideshare"></i> Meet</h5>
+                        <span>awesome people like you</span>
+                    </div>
+                    <div class="col-md-6">
+                        <h5><i class="fa fa-link"></i> Create</h5>
+                        <span>and enjoy lasting frienships</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5><i class="fa fa-comment"></i> Message</h5>
+                        <span>anyone, anywhere</span>
+                    </div>
+                    <div class="col-md-6">
+                        <h5><i class="fa fa-file-image-o"></i> Upload and show</h5>
+                        <span>your best photos to the world</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5><i class="fa fa-heart-o"></i> Vote</h5>
+                        <span>for the best profile and get ranked among everyone</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---------------------- MOBILE ---------------------------------->
+    <div class="jumbotron banner-img mobile" ng-hide="homeCtrl.isAuth">
+        <div class="container banner-content">
+            <h1 class="title">
+                <span class="title-content">
+                    <img src="~/Images/Groomgy_Name.svg" class="logo-title" />
+                    <span class="title-quote">message anyone, anywhere!</span>
+                </span>
+            </h1>
+            <div class="row">
+                <div class="col-xs-6">
+                    <span class="landing-banner-title"><i class="fa fa-slideshare"></i> Meet</span> <br />
+                    <span class="landing-banner-title-text">awesome people like you</span>
+                    <br />
+                </div>
+                <div class="col-xs-6">
+                    <span class="landing-banner-title"><i class="fa fa-comment"></i> Message</span><br />
+                    <span class="landing-banner-title-text">anyone, anywhere</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <span class="landing-banner-title"><i class="fa fa-link"></i> Create</span> <br />
+                    <span class="landing-banner-title-text">and enjoy lasting frienships</span>
+                </div>
+                <div class="col-xs-6">
+                    <span class="landing-banner-title"><i class="fa fa-heart-o"></i> Vote</span><br />
+                    <span class="landing-banner-title-text">for the best profile</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <a class="btn btn-primary btn-block account-button" ui-sref="account">Log in</a>
+                </div>
+                <div class="col-md-6">
+                    <a class="btn btn-primary btn-block account-button landing-banner-last-button" ui-sref="account">Sign up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div ui-view="nameList"></div>
+            </div>
+            <div class="col-md-9">
+                <div ui-view="match"></div>
+                <div ui-view="userTileList"></div>
+            </div>
+        </div>
+    </div>
+</div>

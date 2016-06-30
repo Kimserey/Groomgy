@@ -1,0 +1,49 @@
+﻿<div ng-controller="UserVoteController as voteCtrl">
+    <div ng-show="voteCtrl.canVote">
+        <form name="voteForm">
+            <div class="alert alert-warning" ng-show="voteCtrl.message">{{voteCtrl.message}}</div>
+            <input ng-model="voteCtrl.draftVote.Comment"
+                   class="form-control vote-send-input"
+                   placeholder="Vote & comment here..."
+                   ng-click="showVoteSection = true"
+                   ng-disabled="voteCtrl.isVoteBusy" />
+            <div class="row vote-send-section" ng-show="showVoteSection">
+                <div class="col-md-8">
+                    <rating ng-model="voteCtrl.draftVote.Rate" max="5" on-hover="voteCtrl.hoveringOverStar(value)" on-leave="voteCtrl.tempRate = null"></rating>
+                    <span class="label vote-label" ng-class="{
+                  'label-default': (voteCtrl.tempRate ? voteCtrl.tempRate : voteCtrl.draftVote.Rate) <= 1,
+                  'label-primary': (voteCtrl.tempRate ? voteCtrl.tempRate : voteCtrl.draftVote.Rate) == 2,
+                  'label-warning': (voteCtrl.tempRate ? voteCtrl.tempRate : voteCtrl.draftVote.Rate) == 3,
+                  'label-info': (voteCtrl.tempRate ? voteCtrl.tempRate : voteCtrl.draftVote.Rate) == 4,
+                  'label-success': (voteCtrl.tempRate ? voteCtrl.tempRate : voteCtrl.draftVote.Rate) == 5 }">{{voteCtrl.tempRate ? voteCtrl.tempRate : voteCtrl.draftVote.Rate}}</span>
+                </div>
+                <div class="col-md-4">
+                    <input class="btn btn-primary btn-block"
+                           type="submit"
+                           value="{{voteCtrl.isVoteBusy ? 'VOTING...' : 'SEND'}}"
+                           ng-click="voteCtrl.sendVote();"
+                           ng-disabled="voteCtrl.isVoteBusy" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="media" ng-repeat="vote in voteCtrl.votes | orderBy: 'RatedOn' : true">
+        <a class="media-left" ui-sref="profile({ id: vote.VotedByUser.UserId })">
+            <img ng-src="{{vote.VotedByUser.ProfilePhoto.Small}}"
+                 alt="{{vote.VotedByUser.Name}}"
+                 class="img-user img-radius-border img-responsive"
+                 title="{{vote.VotedByUser.Name}}" />
+        </a>
+        <div class="media-body vote-body">
+            <rating ng-model="vote.Rate" max="5" readonly="true"></rating>
+            <span class="label vote-label" ng-class="{
+                  'label-default': vote.Rate <= 1,
+                  'label-primary': vote.Rate == 2,
+                  'label-warning': vote.Rate == 3,
+                  'label-info': vote.Rate == 4,
+                  'label-success': vote.Rate == 5 }">{{vote.Rate}}</span>
+            <div class="vote-date">{{vote.RatedOn | fromNow}}</div>
+            <p class="vote-comment">{{vote.Comment}}</p>
+        </div>
+    </div>
+</div>

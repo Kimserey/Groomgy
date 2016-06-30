@@ -1,0 +1,34 @@
+﻿<div class="list-group computer">
+    <a href=""
+       class="list-group-item"
+       ng-class="{'active': conversation.IsActive}"
+       ng-repeat="conversation in conversationCtrl.conversationPreviews | orderBy: 'User.Name'"
+       ng-click="conversationCtrl.selectConversation(conversation.ConversationId)">
+        <div class="row">
+            <div class="col-md-4">
+                <img ng-src="{{conversation.User.ProfilePhoto.Small}}" 
+                     class="img-radius-border img-responsive" 
+                     alt="{{conversation.User.Name}}"/>
+            </div>
+            <div class="col-md-8">
+                <p class="conversation-list-title">
+                    <span class="conversation-name">{{conversation.User.Name}}</span> <span ng-show="conversation.HasNewMessages" class="conversation-new-indicator">unread</span>
+                </p>
+                <p>{{conversation.Message ? conversation.Message.Text : ''}}</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<div class="mobile">
+    <div class="row conversation-list-images">
+        <div class="col-xs-3" ng-repeat="conversation in conversationCtrl.conversationPreviews | orderBy: 'User.Name'">
+            <span ng-class="{'conversation-new-indicator-hidden' : !conversation.HasNewMessages}" class="conversation-new-indicator">unread</span>
+            <img class="img-responsive img-radius-border"
+                 ng-class="{'img-selected': conversation.IsActive}"
+                 ng-src="{{conversation.User.ProfilePhoto.Small}}"
+                 alt="{{conversation.User.Name}}"
+                 ng-click="conversationCtrl.selectConversation(conversation.ConversationId)" />
+        </div>
+    </div>
+</div>

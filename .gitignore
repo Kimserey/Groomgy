@@ -1,0 +1,6 @@
+packages
+*.dll
+.nuget
+.vs
+bin/
+obj/

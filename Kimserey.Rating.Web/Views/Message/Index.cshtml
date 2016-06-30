@@ -1,0 +1,26 @@
+﻿<div class="container">
+    <div class="row" ng-controller="ConversationController as conversationCtrl">
+        <div ng-hide="conversationCtrl.isLoaded" ng-include="'/app/Home/Loader'" />
+        <div class="col-md-10"
+             ng-show="conversationCtrl.isLoaded && conversationCtrl.conversationPreviews.length == 0">
+            <div class="discover-people-div">
+                <span class="discover-people-text">You have no new messages.</span>
+                <a class="btn btn-primary discover-people-btn" ui-sref="home">DISCOVER NEW PEOPLE</a>
+            </div>
+        </div>
+        <div class="col-md-3"
+             ng-show="conversationCtrl.isLoaded && conversationCtrl.conversationPreviews.length > 0">
+            <div ui-view="conversationList"></div>
+        </div>
+        <div class="col-md-7"
+             ng-show="conversationCtrl.isLoaded && conversationCtrl.conversationPreviews.length > 0 && !conversationCtrl.activatedConversation">
+            <div class="discover-people-div">
+                <span class="discover-people-text">Select a conversation.</span>
+            </div>
+        </div>
+        <div class="col-md-7"
+             ng-show="conversationCtrl.isLoaded && conversationCtrl.conversationPreviews.length > 0">
+            <div ui-view="conversation"></div>
+        </div>
+    </div>
+</div>

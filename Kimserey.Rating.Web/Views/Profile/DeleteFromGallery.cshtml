@@ -1,0 +1,19 @@
+﻿<div class="delete-gallery-title">
+    <span class="delete-gallery-title-text">Which picture do you want to delete?</span>
+</div>
+<div class="row delete-gallery-content">
+    <div class="col-sm-2 picture" ng-repeat="pic in pictures">
+        <img class="img-responsive img-radius-border delete-img-profile"
+             ng-click="pic.selected=!pic.selected"
+             ng-src="{{pic.url}}"
+             ng-class="{'img-selected': pic.selected}" />
+    </div>
+</div>
+<div class="row delete-gallery-content">
+    <div class="col-md-6">
+        <button class="btn btn-default btn-block delete-gallery-button" ng-click="$dismiss()">GO BACK</button>
+    </div>
+    <div class="col-md-6">
+        <button class="btn btn-danger btn-block delete-gallery-button" ng-click="delete()">DELETE</button>
+    </div>
+</div>
